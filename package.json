@@ -1,0 +1,39 @@
+{
+  "name": "base-cli",
+  "version": "0.0.1",
+  "description": "this cli can provide a base framework if you use vue3 or react to develop your project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c rollup.config.js --bundleConfigAsCjs"
+  },
+  "keywords": ["react","vue3","typescript","vite"],
+  "author": "wang andy",
+  "license": "ISC",
+  "bin": {
+    "base-cli": "bin/index.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@inquirer/prompts": "^5.0.7",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/fs-extra": "^11.0.4",
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "progress-estimator": "^0.3.1",
+    "rollup": "^4.9.0",
+    "rollup-plugin-node-externals": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "simple-git": "^3.25.0",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.2"
+  }
+}
