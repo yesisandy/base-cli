@@ -58,11 +58,14 @@ async function checkVersion(name:string,version:string) {
         console.error(error)
    }
     if(lastestVersion !== version && lastestVersion){
-        console.warn(`检测到有新版本v${lastestVersion},当前版本是v${version}，下载最新模板请使用 ${chalk.green('zaizhen-cli update')} 命令`)
+        console.warn(`检测到最新版本是v${lastestVersion},当前版本是v${version}。下载最新模板请使用 ${chalk.green('zaizhen-cli update')} 命令`)
     }
 }
 
 export async function create(projectName?: string) {
+    //校验版本号，在选择模板前，避免本地和线上的模板不一样；
+    await checkVersion(name,version)
+
     if(!projectName){
         projectName = await input({
             message: '请输入项目名称'
@@ -86,9 +89,6 @@ export async function create(projectName?: string) {
             description: info.description
         }
     })
-
-    //校验版本号，在选择模板前，避免本地和线上的模板不一样；
-    await checkVersion(name,version)
     
     const templateName = await select({
         message: '请选择模板',
