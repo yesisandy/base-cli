@@ -58,7 +58,7 @@ async function checkVersion(name:string,version:string) {
    }catch(error){
         console.error(error)
    }
-   if(lastestVersion !== version){
+   if(lastestVersion !== version && lastestVersion){
         console.warn(`检测到有新版本v${lastestVersion},当前版本是v${version}，需要重新下载新模板`)
    }
 }
