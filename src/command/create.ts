@@ -16,13 +16,13 @@ export const templates:Map<string, TemeplateInfo> = new Map([
     ['vue3', {
         name: 'geeker-vue3.3-admin',
         downLoadUrl: 'https://gitee.com/codeboy-wl/geeker-vue-admin.git',
-        description: 'vue3技术栈开发模板',
+        description: '',
         branch: 'master'
     }],
     ['react18', {
         name: 'react18-manager',
         downLoadUrl: 'https://gitee.com/codeboy-wl/react18-manager.git',
-        description: 'react技术栈开发模板',
+        description: '',
         branch: 'master'
     }],
     ['取消', {
