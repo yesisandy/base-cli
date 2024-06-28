@@ -1,6 +1,6 @@
 {
   "name": "zaizhen-cli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "this cli can provide a base framework if you use vue3 or react to develop your project",
   "main": "index.js",
   "scripts": {
