@@ -35,7 +35,7 @@ export const templates:Map<string, TemeplateInfo> = new Map([
 
 function overwriteFile(filePath: string) {
     return select({
-        message: '检测到同级目录下存在同名项目，是否覆盖？',
+        message: `检测到目录${chalk.green(filePath)}已经存在，是否覆盖？`,
         choices: [
            {
             name: '覆盖',
