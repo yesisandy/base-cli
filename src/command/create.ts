@@ -3,6 +3,8 @@ import {input, select} from '@inquirer/prompts'
 import {clone} from './clone'
 import path from 'path'
 import fs from 'fs-extra'
+import {name,version} from '../../package.json'
+import chalk from 'chalk'
 export interface TemeplateInfo {
     name: string,
     downLoadUrl: string,
@@ -22,6 +24,12 @@ export const templates:Map<string, TemeplateInfo> = new Map([
         downLoadUrl: 'https://gitee.com/codeboy-wl/react18-manager.git',
         description: 'react技术栈开发模板',
         branch: 'master'
+    }],
+    ['取消', {
+        name: '',
+        downLoadUrl: '',
+        description: '',
+        branch: ''
     }]
 ])
 
@@ -39,6 +47,20 @@ function overwriteFile(filePath: string) {
            }
         ]
     })
+}
+
+async function checkVersion(name:string,version:string) {
+   let  lastestVersion = {}
+   try{
+        let res =await (await fetch('https://registry.npmjs.org/-/package/'+name+'/dist-tags')).json()
+        lastestVersion = JSON.parse(JSON.stringify(res)).latest
+        console.log('lastestVersion:',lastestVersion)
+   }catch(error){
+        console.error(error)
+   }
+   if(lastestVersion !== version){
+        console.warn(`检测到有新版本v${lastestVersion},当前版本是v${version}，需要重新下载新模板`)
+   }
 }
 
 export async function create(projectName?: string) {
@@ -65,13 +87,16 @@ export async function create(projectName?: string) {
             description: info.description
         }
     })
+
+    //校验版本号，在选择模板前，避免本地和线上的模板不一样；
+    await checkVersion(name,version)
     
     const templateName = await select({
         message: '请选择模板',
         choices: templateList
     })
     const info = templates.get(templateName)
-    if(info){
-        await clone(info.downLoadUrl,projectName,['-b',info.branch])
-    }
+    if(!info!.name) return
+    await clone(info!.downLoadUrl,projectName,['-b',info!.branch])
+    
 }

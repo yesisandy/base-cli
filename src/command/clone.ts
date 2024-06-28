@@ -1,6 +1,6 @@
 import simpleGit,{SimpleGitOptions} from 'simple-git';
 import chalk from 'chalk'
-const createLogger = require('progress-estimator')
+import createLogger from 'progress-estimator'
 
 //初始化进度条
 const logger = createLogger({
