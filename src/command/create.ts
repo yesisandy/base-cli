@@ -54,13 +54,12 @@ async function checkVersion(name:string,version:string) {
    try{
         let res =await (await fetch('https://registry.npmjs.org/-/package/'+name+'/dist-tags')).json()
         lastestVersion = JSON.parse(JSON.stringify(res)).latest
-        console.log('lastestVersion:',lastestVersion)
    }catch(error){
         console.error(error)
    }
-   if(lastestVersion !== version && lastestVersion){
-        console.warn(`检测到有新版本v${lastestVersion},当前版本是v${version}，需要重新下载新模板`)
-   }
+    if(lastestVersion !== version && lastestVersion){
+        console.warn(`检测到有新版本v${lastestVersion},当前版本是v${version}，下载最新模板请使用 ${chalk.green('zaizhen-cli update')} 命令`)
+    }
 }
 
 export async function create(projectName?: string) {
