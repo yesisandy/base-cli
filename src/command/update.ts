@@ -14,12 +14,12 @@ const spinner = ora({
 
 export function update(){
     spinner.start()
-    process.exec('pnpm i -g zaizhen-cli@latest', (error)=>{
+    process.exec('npm i -g zaizhen-cli@latest', (error)=>{
         spinner.stop()
         if(!error){
             console.log(chalk.green('更新成功'))
         }else{
-            console.log(chalk.red('更新失败'))
+            console.log(chalk.red('更新失败'),error)
         }
     })
 }
